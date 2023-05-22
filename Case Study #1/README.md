@@ -1,6 +1,6 @@
 
 # Case Study #1 - Danny's Diner
-<img src="[https://your-image-url.type](https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/6b881c85-f311-4962-94e5-bcb1adfebc39)" width="300" height="300">
+<img src="[https://your-image-url.type](https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/6b881c85-f311-4962-94e5-bcb1adfebc39)" width="300px" height="300px">
 
 
 
