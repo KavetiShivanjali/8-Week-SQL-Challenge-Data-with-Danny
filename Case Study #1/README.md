@@ -16,7 +16,7 @@ There are 3 key datasets available with respect to the food business
 
 # Entity Relationship Diagram
 <p align = "center">
-<img src="https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/36594a07-5c0a-46b0-aa69-08badbd56c06.png" width="300" height="300">
+<img src="https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/36594a07-5c0a-46b0-aa69-08badbd56c06.png" width="300" height="200">
 </p>
 
 
