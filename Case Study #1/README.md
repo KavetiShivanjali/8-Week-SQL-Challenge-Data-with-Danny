@@ -36,6 +36,16 @@ There are 3 key datasets available with respect to the food business
 1. Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
 
 # 🤨Insights
+1. Customer A and B are the most visited customer and spent customers who really likes food from this restaurant
+2. Curry is the most preferred item by most of the customers during their first visits. 
+3. Ramen is the most purchased item from the menu. 54% of total orders are for "Ramen".
+4. Sushi and Ramen are the most popular items ordered by most of the customers.
+5. Sushi and curry are the first purchased items of the membered customers.
+6. Customers are more likely to order more items after taking membership.
+7. Customer B has the highest loyalty points compared to other customers if the loyalty points are based on the sushi orders.
+8. Among the membered customers Customer A has the highest loyalty points compared to B
+
+
 
 
 
