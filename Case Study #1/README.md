@@ -1,7 +1,8 @@
 
 # Case Study #1 - Danny's Diner
+<p align="center">
 <img src="https://user-images.githubusercontent.com/81607668/127727503-9d9e7a25-93cb-4f95-8bd0-20b87cb4b459.png" width="300" height="300">
-
+</p>
 
 
 # Problem Statement
@@ -14,7 +15,9 @@ There are 3 key datasets available with respect to the food business
 * members
 
 # Entity Relationship Diagram
-![image](https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/36594a07-5c0a-46b0-aa69-08badbd56c06)
+<p align = "center">
+<img src="https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/36594a07-5c0a-46b0-aa69-08badbd56c06.png" width="300" height="300">
+</p>
 
 
 # Case Study questions
