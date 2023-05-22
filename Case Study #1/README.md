@@ -1,6 +1,7 @@
 
 # Case Study #1 - Danny's Diner
-![image](https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/90b15b15-2b2c-4288-8aa3-35a679a18202)
+![image](https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/6b881c85-f311-4962-94e5-bcb1adfebc39)
+
 
 
 # Problem Statement
