@@ -2,7 +2,7 @@ SET search_path = pizza_runner;
 
 -- A. Pizza Metrics
 --1. How many pizzas were ordered?
-select count(distinct order_id) as tot_orders from customer_orders;
+select count(order_id) as tot_orders from customer_orders;
 
 --2. How many unique customer orders were made?
 select count(distinct customer_id) as tot_cust from customer_orders;
