@@ -10,38 +10,6 @@ on pr.toppings = pt.topping_id
 group by 1;
 
 --2. What was the most commonly added extra?
-DROP TABLE customer_orders_temp;
-create temp table customer_orders_temp
-(
-  "order_id" INTEGER,
-  "customer_id" INTEGER,
-  "pizza_id" INTEGER,
-  "exclusions" VARCHAR(4),
-  "extras" VARCHAR(4),
-  "order_time" TIMESTAMP,
-"sno" INTEGER
-);
-
-insert into customer_orders_temp
-with cte as
-(select *, row_number() over() as sno from customer_orders
- )
-select order_id,customer_id,pizza_id,t1.exclusions, t2.extras, order_time, sno
-from cte
-   cross join lateral unnest(coalesce(nullif(string_to_array(exclusions,', '),'{}'),array[null::VARCHAR(4)])) as t1(exclusions)
-   cross join lateral unnest(coalesce(nullif(string_to_array(extras,', '),'{}'),array[null::VARCHAR(4)])) as t2(extras);
-
-ALTER table customer_orders_temp
-ALTER COLUMN extras TYPE INTEGER
-USING extras::INTEGER
-
-ALTER table customer_orders_temp
-ALTER COLUMN exclusions TYPE INTEGER
-USING exclusions::INTEGER
-
-ALTER TABLE customer_orders_temp
-ALTER COLUMN order_time TYPE timestamp
-USING order_time::timestamp;
 
 select pt.topping_name as common_extras, count(distinct sno) as tot
 from customer_orders_temp c
