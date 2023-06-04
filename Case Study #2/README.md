@@ -1,6 +1,6 @@
 # 🍕🛵Pizza Runner
 <p align = "center">
-<img width="300" height="300" src = "https://8weeksqlchallenge.com/images/case-study-designs/2.png"> 
+<img width="300" height="300" src = "https://user-images.githubusercontent.com/81607668/127271856-3c0d5b4a-baab-472c-9e24-3c1e3c3359b2.png"> 
 </p>
 
 # 🔢Problem Statement
