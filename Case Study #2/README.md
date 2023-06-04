@@ -78,6 +78,11 @@ For example: "Meat Lovers: 2xBacon, Beef, ... , Salami"
   5. If a Meat Lovers pizza was $12 and Vegetarian $10 fixed prices with no cost for extras and each runner is paid $0.30 per kilometre traveled - how much money does Pizza Runner have left over after these deliveries?
   
 # 📝Things learnt
+ 1. Data Cleaning in Postgres
+ 2. Unnesting multi value columns
+ 3. Converting space and "null" strings to NULL values
+ 4. Gathering attributes of one single entity using Union and Except
+ 5. Changing data types of original attributes
 
 # 🤨Insights
 
