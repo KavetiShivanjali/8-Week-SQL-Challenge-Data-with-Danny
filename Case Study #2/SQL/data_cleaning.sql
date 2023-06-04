@@ -51,18 +51,6 @@ ALTER TABLE customer_orders
 ALTER COLUMN order_time TYPE timestamp
 USING order_time::timestamp;
 
-ALTER table customer_orders_temp
-ALTER COLUMN extras TYPE INTEGER
-USING extras::INTEGER
-
-ALTER table customer_orders_temp
-ALTER COLUMN exclusions TYPE INTEGER
-USING exclusions::INTEGER
-
-ALTER TABLE customer_orders_temp
-ALTER COLUMN order_time TYPE timestamp
-USING order_time::timestamp;
-
 update pizza_runner.customer_orders
 set exclusions = case when exclusions = 'null' then replace(exclusions, 'null', NULL)
 else replace(exclusions, '', NULL)
@@ -96,6 +84,18 @@ from cte
    cross join lateral unnest(coalesce(nullif(string_to_array(exclusions,', '),'{}'),array[null::VARCHAR(4)])) as t1(exclusions)
    cross join lateral unnest(coalesce(nullif(string_to_array(extras,', '),'{}'),array[null::VARCHAR(4)])) as t2(extras);
    
+ALTER table customer_orders_temp
+ALTER COLUMN extras TYPE INTEGER
+USING extras::INTEGER
+
+ALTER table customer_orders_temp
+ALTER COLUMN exclusions TYPE INTEGER
+USING exclusions::INTEGER
+
+ALTER TABLE customer_orders_temp
+ALTER COLUMN order_time TYPE timestamp
+USING order_time::timestamp;
+
 select * from customer_orders_temp;
 
 -----------------------------------------------------
