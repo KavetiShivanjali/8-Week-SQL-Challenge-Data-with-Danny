@@ -1,3 +1,6 @@
+-- **** Original Case Study Schema ****
+
+-- Creating and Inserting pizza_runner table
 CREATE SCHEMA pizza_runner;
 SET search_path = pizza_runner;
 
@@ -13,8 +16,9 @@ VALUES
   (2, '2021-01-03'),
   (3, '2021-01-08'),
   (4, '2021-01-15');
+-------------------------------------------------------------------------------
 
-
+-- Creating and Inserting customer_orders tale
 DROP TABLE IF EXISTS customer_orders;
 CREATE TABLE customer_orders (
   "order_id" INTEGER,
@@ -42,8 +46,9 @@ VALUES
   ('9', '103', '1', '4', '1, 5', '2020-01-10 11:22:59'),
   ('10', '104', '1', 'null', 'null', '2020-01-11 18:34:49'),
   ('10', '104', '1', '2, 6', '1, 4', '2020-01-11 18:34:49');
+--------------------------------------------------------------------------
 
-
+-- Creating and Inserting runner_orders table
 DROP TABLE IF EXISTS runner_orders;
 CREATE TABLE runner_orders (
   "order_id" INTEGER,
@@ -67,8 +72,9 @@ VALUES
   ('8', '2', '2020-01-10 00:15:02', '23.4 km', '15 minute', 'null'),
   ('9', '2', 'null', 'null', 'null', 'Customer Cancellation'),
   ('10', '1', '2020-01-11 18:50:20', '10km', '10minutes', 'null');
+------------------------------------------------------------------------
 
-
+-- Creating and Inserting pizza_names
 DROP TABLE IF EXISTS pizza_names;
 CREATE TABLE pizza_names (
   "pizza_id" INTEGER,
@@ -79,8 +85,9 @@ INSERT INTO pizza_names
 VALUES
   (1, 'Meatlovers'),
   (2, 'Vegetarian');
+----------------------------------------------------------
 
-
+-- Creating and Inserting pizza_recipes
 DROP TABLE IF EXISTS pizza_recipes;
 CREATE TABLE pizza_recipes (
   "pizza_id" INTEGER,
@@ -91,8 +98,9 @@ INSERT INTO pizza_recipes
 VALUES
   (1, '1, 2, 3, 4, 5, 6, 8, 10'),
   (2, '4, 6, 7, 9, 11, 12');
+----------------------------------------------------------
 
-
+-- Creating and Inserting pizza_toppings
 DROP TABLE IF EXISTS pizza_toppings;
 CREATE TABLE pizza_toppings (
   "topping_id" INTEGER,
