@@ -1,3 +1,5 @@
+-- ****Data Cleaning****
+
 SET search_path = pizza_runner;
 
 select * from runner_orders;
