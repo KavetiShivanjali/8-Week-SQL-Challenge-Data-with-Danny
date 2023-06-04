@@ -9,38 +9,6 @@ from customer_orders;
 
 --2. What if there was an additional $1 charge for any pizza extras?
 --   Add cheese is $1 extra
-DROP TABLE customer_orders_temp;
-create temp table customer_orders_temp
-(
-  "order_id" INTEGER,
-  "customer_id" INTEGER,
-  "pizza_id" INTEGER,
-  "exclusions" VARCHAR(4),
-  "extras" VARCHAR(4),
-  "order_time" TIMESTAMP,
-"sno" INTEGER
-);
-
-insert into customer_orders_temp
-with cte as
-(select *, row_number() over() as sno from customer_orders
- )
-select order_id,customer_id,pizza_id,t1.exclusions, t2.extras, order_time, sno
-from cte
-   cross join lateral unnest(coalesce(nullif(string_to_array(exclusions,', '),'{}'),array[null::VARCHAR(4)])) as t1(exclusions)
-   cross join lateral unnest(coalesce(nullif(string_to_array(extras,', '),'{}'),array[null::VARCHAR(4)])) as t2(extras);
-
-ALTER table customer_orders_temp
-ALTER COLUMN extras TYPE INTEGER
-USING extras::INTEGER
-
-ALTER table customer_orders_temp
-ALTER COLUMN exclusions TYPE INTEGER
-USING exclusions::INTEGER
-
-ALTER TABLE customer_orders_temp
-ALTER COLUMN order_time TYPE timestamp
-USING order_time::timestamp;
 
 with cte as 
 (
@@ -85,6 +53,7 @@ from runner_orders
 truncate table runner_orders_temp;
 
 select * from runner_orders_temp
+
 --4. Using your newly generated table - can you join all of the information together to form a table which has the following information for successful deliveries?
 -- customer_id
 -- order_id
