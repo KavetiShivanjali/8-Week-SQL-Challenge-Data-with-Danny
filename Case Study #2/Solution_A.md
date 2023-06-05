@@ -62,10 +62,8 @@
           group by 1;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+   To get the count of each pizza type successfully delivered, we need to gather information containing pizza and delivery status. This information comes from
+   two tables customer_orders which contains pizza_type in the form of pizza_id and runner_orders containing delivery status information in the form of   cancellation. After joining these tables, we need to count the orders for each pizza which clearly hints the use of group by over pizza_id.
   
   <b> Result: </b>
   
@@ -84,10 +82,8 @@
           order by 1;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  To get the count of a sub-category for each category we can use sum over case statements. Each sum would represent for each sub-category. Inside sum we can add a conditional statement such as case to trigger when that sub-category is triggered just by simply storing as 1 when the sub-category condition is met else 0.
+  By summing over this case statement will actually give the count of that particular sub-category. At the end, we need it for each category so a simple group by over category will do the needful. Considering, customers as cateories and pizzas as sub-categories the above code will give the following result.
   
   <b> Result: </b>
   
@@ -106,10 +102,8 @@
           limit 1;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  As we need to find the maximum number of pizzas delivered in a single order, we have to gather the information related to orders primarily. For each order_id we
+  need to get the total count of orders done in customer_orders table, a simple group by over order_id 
   
   <b> Result: </b>
   
