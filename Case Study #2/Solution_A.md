@@ -1,4 +1,4 @@
-# A. Pizza Metric Solutions & Explanations
+# A. 🍕Pizza Metric Solutions & Explanations
 <b> 1. How many pizzas were ordered?</b>
   
   <b> Solution:</b>
