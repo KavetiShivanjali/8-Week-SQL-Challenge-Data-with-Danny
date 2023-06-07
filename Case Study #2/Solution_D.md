@@ -10,7 +10,7 @@
         from customer_orders;
   <b> Explanation: </b>
   
-  customer_orders table is containing information of all the orders and hence a simple count function over the table will give the result.
+  To find the total revenue given the prizes for each pizza i.e., 12 dollars for Meat Lovers and 10 dollars for Vegetarian pizza. We can use case statement to add 12 when the pizza is Meat lover and 10 else. Summing these values will result in total revenue from all the orders.
   
   <b> Result: </b>
   
@@ -47,7 +47,7 @@
         cross join cte3
   <b> Explanation: </b>
   
-  customer_orders table contains customer_id those who ordered pizzas. A simple count distinct on customer_id will give the necessary result.
+  We need to find the total extras included in every order. Summing up the total extras would give us the total revenue from only extras. Adding this extra's revenue to the original revenue will yield the revenue of all the ordered pizzas with extras.
   
   <b> Result: </b>
   
@@ -79,10 +79,7 @@
         select * from runner_orders_temp
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  To including the new attribute rating, I created a new table which contains runner_orders information along with ratings as an added attribute. I used random numbers to populate values for ratings belonging to each order.
   
   <b> Result: </b>
   
@@ -116,10 +113,7 @@
           order by 2
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  To get all the required information we need to join two tables customer_orders and runner_orders_temp and apply the necessary aggregate functions as and when required along with group by over the order_id to get the information for each order_id.
   
   <b> Result: </b>
   
@@ -148,10 +142,7 @@
           order by 1;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  To get the Runners left over we need pizza_id, distance covered by each runner, so we need to gather all the information by using join operation on customer_orders and runner_orders. By using case statement to separate Meat Lovers pizza from Vegetarian pizza we can add its corresponding rates and remove the runners payment using the distance from runner_orders will give the left over revenue after the delivery.
   
   <b> Result: </b>
   
