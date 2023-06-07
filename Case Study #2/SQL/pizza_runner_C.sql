@@ -1,13 +1,17 @@
 SET search_path = pizza_runner;
 -- C.Ingredient Optimization
 --1. What are the standard ingredients for each pizza?
-select pn.pizza_name, string_agg(pt.topping_name, ', ') as standard_ingredients
+with cte as(
+select  distinct pn.pizza_name as pizza_name,  pt.topping_name as standard_ingredients
 from pizza_recipes pr
 join pizza_names pn
 on pr.pizza_id = pn.pizza_id
 join pizza_toppings pt
 on pr.toppings = pt.topping_id
-group by 1;
+)
+select pizza_name, string_agg(standard_ingredients, ', ') as standard_ingredients
+from cte
+group by 1
 
 --2. What was the most commonly added extra?
 
