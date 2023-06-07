@@ -12,7 +12,7 @@
         group by 1;
   <b> Explanation: </b>
   
-  customer_orders table is containing information of all the orders and hence a simple count function over the table will give the result.
+  To get the standard ingredients for each pizza, we need to get the pizza name and its ingredient names. For pizza name ther is pizza names table with pizza_id and pizza name as the two columns. To get the ingredients there is pizza_recipes table with pizza_id and toppings. To get the names of toppings ther is pizza_toppings with topping_id and topping_name. We can join these three tables to get the pizza name and ingredient names and group by pizza_name to get the ingredients for each pizza. 
   
   <b> Result: </b>
   
@@ -34,7 +34,7 @@
           limit 1;
   <b> Explanation: </b>
   
-  customer_orders table contains customer_id those who ordered pizzas. A simple count distinct on customer_id will give the necessary result.
+  To get the most commonly added extras, we need to count the orders for each extra requested. This information I collected from a temporary table which was created during data_preprocessing phase. With this temp table we can get the count for each extra requested and pick the top extra by using order by count descending and by keeping the limit as 1 to select the top row. 
   
   <b> Result: </b>
   
@@ -54,11 +54,8 @@
           order by 2 desc
           limit 1;
   <b> Explanation: </b>
+  To get the most commonly added exclusion, we need to count the orders for each exclusion requested. This information I collected from a temporary table which was created during data_preprocessing phase. With this temp table we can get the count for each exclusion requested and pick the top extra by using order by count descending and by keeping the limit as 1 to select the top row.
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
   
   <b> Result: </b>
   
@@ -85,10 +82,8 @@
           where pizza_id = 1;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  As the options above involve only Meat Lovers, so I used a where clause to pick only Meat lovers pizza. By using case statements over the exclusions and extras
+  we can categorise each order into 4 options mentioned in the question.
   
   <b> Result: </b>
   
@@ -149,10 +144,13 @@
           order by 1,2,3;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  My approach to this question is as follows.
+  
+    Step-1: I gathered all the standard ingredients for each pizza ordered by joining the customer orders temp table and pizza recipes table, so that each ordered pizza has a row corresponding to an ingredient being used in it.
+    Step-2: From this standard ingedients we need to add the extras and remove the exlusion ingredient if they are mentioned. I used union all to add the extras and except all to remove the exclusion
+    Step-3: Count the ingredients for each ordered pizza.
+    Step-4: Based on the count mark ingredient as 2X before its name if it's count is 2 else include just the name.
+    Step-5: Use string_agg over the ingredient names along with the pizza name to make the final list of ingredients for each ordered pizza.
   
   <b> Result: </b>
   
@@ -204,10 +202,12 @@
           order by 2 desc;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  My approach to find the total quantity of each ingredient used is as follows.
+  
+    Step-1: Gather all the delivered pizzas along with their standard ingredients by joining customer_orders_temp, runner_orders, pizza_recipes table.
+    Step-2: Add the extras by using union all and remove the exclusions by using except all from the gathered ingredients.
+    Step-3: Get the count of each ingredient used.
+    Step-4: Order the results based on the count in descending order to get the top ingredients.
   
   <b> Result: </b>
   
