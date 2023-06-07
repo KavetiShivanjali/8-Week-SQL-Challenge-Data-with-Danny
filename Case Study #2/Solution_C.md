@@ -3,20 +3,24 @@
   
   <b> Solution:</b>
         
-        select pn.pizza_name, string_agg(pt.topping_name, ', ') as standard_ingredients
-        from pizza_recipes pr
-        join pizza_names pn
-        on pr.pizza_id = pn.pizza_id
-        join pizza_toppings pt
-        on pr.toppings = pt.topping_id
-        group by 1;
+    with cte as(
+    select  distinct pn.pizza_name as pizza_name,  pt.topping_name as standard_ingredients
+    from pizza_recipes pr
+    join pizza_names pn
+    on pr.pizza_id = pn.pizza_id
+    join pizza_toppings pt
+    on pr.toppings = pt.topping_id
+    )
+	select pizza_name, string_agg(standard_ingredients, ', ') as standard_ingredients
+	from cte
+	group by 1
   <b> Explanation: </b>
   
   To get the standard ingredients for each pizza, we need to get the pizza name and its ingredient names. For pizza name ther is pizza names table with pizza_id and pizza name as the two columns. To get the ingredients there is pizza_recipes table with pizza_id and toppings. To get the names of toppings ther is pizza_toppings with topping_id and topping_name. We can join these three tables to get the pizza name and ingredient names and group by pizza_name to get the ingredients for each pizza. 
   
   <b> Result: </b>
   
-  ![image](https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/6c031112-0533-4c45-a4c3-29f412852ac1)
+  ![image](https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/32d896dd-1bca-43e2-95d0-a856c21270ee)
 
   
  <b> 2. What was the most commonly added extra?</b>
