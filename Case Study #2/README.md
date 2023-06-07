@@ -78,32 +78,34 @@ For example: "Meat Lovers: 2xBacon, Beef, ... , Salami"
   5. If a Meat Lovers pizza was $12 and Vegetarian $10 fixed prices with no cost for extras and each runner is paid $0.30 per kilometre traveled - how much money does Pizza Runner have left over after these deliveries?
   
 # 📝Things learnt
- 1. Data Cleaning in Postgres
- 2. Unnesting multi value columns
- 3. Converting space and "null" strings to NULL values
- 4. Gathering attributes of one single entity using Union and Except
- 5. Changing data types of original attributes
+ 1. Data Cleaning in Postgres.
+ 2. Unnesting multi value columns.
+ 3. Converting space and "null" strings to NULL values.
+ 4. Gathering attributes of one single entity using Union and Except.
+ 5. Changing data types of original attributes.
+ 6. Extensively used string_agg, CTEs, Datetime functions.
+ 7. Randmly generated floating numbers in Postgres. 
 
 # 🤨Insights
- 1. Total pizzas ordered are 14 with total customers as 5.
- 2. Meat Lovers Pizza is the most popular pizza on Pizza Runner when compared to Vegetarian Pizza.🥩🔥
- 3. Customers are ordering Meat Lovers Pizza and Vegetarian Pizza in the ratio of 2:1.🥩🥩:🥕
- 4. 1 among 5 customers have ordered only Vegetarian Pizzas.🥕
- 5. 2 among 14 Pizzas ordered have been requested for both "Exclusion" and "Extras".
- 6. Most of the customers are requesting to change the standard ingredients of the pizza ordered.😔
- 7. Delay of service for higher orders is noticed.😔
- 8. 6PM, 9PM, 11PM, 1PM are the happy hours as most number of orders are placed during these hours.😀😃
- 9. 7PM, 11AM are the moderate hours for orders🙂
- 10. Wednesday. Saturday are the peak days for orders follwed by Thursday and Friday🔥
- 11. 1st Week has the highest number of runners signed up, Work Dissatisfaction among runners is noticed here.😔
- 12. 12 mins is the average duration in mins for the runners to reach Pizza Runner HQ.1️⃣2️⃣
- 13. 30 mins the range of duration to deliver the pizza.3️⃣0️⃣
- 14. Bacon is the most preferred ingredient and Cheese is the most excluded ingredient🥓🧀
- 15. Bacon, Mushrooms and Cheese are the highly used ingredients in Pizza.🥓🍄🧀
- 16. 1 among 4 runners hold 100% succesful deliveries.🔢
- 17. Revenue generated without added charges for extras is $160.💵
- 18. Revenue generated with added charges for extras is $166.💵
- 19. Revenue generated after runners cut is $73.38.💵  
+ 1. Total **pizzas** ordered are **14** with total **customers** as **5**.
+ 2. **Meat Lovers Pizza** is the **most popular pizza** on Pizza Runner when compared to Vegetarian Pizza.🥩🔥
+ 3. Customers are ordering **Meat Lovers Pizza and Vegetarian Pizza** in the **ratio of 2:1**.🥩🥩:🥕
+ 4. **1 among 5 customers** have ordered **only Vegetarian Pizzas**.🥕
+ 5. **2 among 14 Pizzas** ordered have been requested for **both "Exclusion" and "Extras"**.
+ 6. **Most** of the customers are **requesting to change the standard ingredients** of the pizza ordered.😔
+ 7. **Delay of service** for **higher orders** is noticed.😔
+ 8. **6PM, 9PM, 11PM, 1PM** are the **happy hours** as most number of orders are placed during these hours.😀😃
+ 9. **7PM, 11AM** are the **moderate hours** for orders🙂
+ 10. **Wednesday. Saturday** are the **peak days for orders** follwed by Thursday and Friday🔥
+ 11. 1st Week has the highest number of runners signed up, **Work Dissatisfaction** among **runners** is noticed here.😔
+ 12. **12 mins** is the **average duration** in mins for the **runners to reach Pizza Runner HQ**.1️⃣2️⃣
+ 13. **30 mins** the **range** of duration **to deliver the pizza**.3️⃣0️⃣
+ 14. **Bacon** is the **most preferred** ingredient and **Cheese** is the **most excluded** ingredient🥓🧀
+ 15. **Bacon, Mushrooms and Cheese** are the **highly used** ingredients in Pizza.🥓🍄🧀
+ 16. **1 among 4** runners hold **100% succesful deliveries**.🔢
+ 17. **Revenue** generated **without** added charges for **extras** is **$160**.💵
+ 18. **Revenue** generated **with** added **charges for extras** is **$166**.💵
+ 19. **Revenue** generated **after runners cut** is **$73.38**.💵  
   
 
    
