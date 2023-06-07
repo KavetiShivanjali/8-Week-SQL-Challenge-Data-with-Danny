@@ -9,7 +9,7 @@
         order by 1;
   <b> Explanation: </b>
   
-  customer_orders table is containing information of all the orders and hence a simple count function over the table will give the result.
+  To get the total runners added weekly, we need to extract week_no information from registration_date which is present in runners table. For each week we can count the runner_id signed up by adding a group by clause over the week_no.
   
   <b> Result: </b>
   
@@ -34,7 +34,7 @@
           order by 2
   <b> Explanation: </b>
   
-  customer_orders table contains customer_id those who ordered pizzas. A simple count distinct on customer_id will give the necessary result.
+  Here we need to calculate the difference in between order_time and pickup_time in terms of mins by gathering information using join between customer_orders which contain order_time and runner_order which contain pickup_time and runner_information. After getting the time_difference in mins we can average the total difference in time for each runner_id.
   
   <b> Result: </b>
   
@@ -60,10 +60,7 @@
           order by 2 desc;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  Here I am conidering time to be the difference between order_time and pickup_time. As mentioned in the above question, both these informations come from two different tables and hence we need to join them. I have written a cte(common table expression which gathers the information such as order_id, number of pizzas for order_id, pickup_time, order_time for each order which was done by adding a group by clause over order_id. To select only the orders which got delivered I used a where clause to only include successful deliveries. After gathering this information we can extract total pizzas ordered along with the time of preparation by finding the difference between order_time and pickup_time.In order to compare the values between number of pizzas and time of preparation order by clause id also included.
   
   <b> Result: </b>
   
@@ -82,10 +79,7 @@
           order by 2 desc;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  Distance information is in the runner_orders table and customer_id is in the customer_orders table. A simple join on the two tables will gather all the information. As it is for each customer group by customer_id and average over the runner's distance will give the average distance travelled for each customer.
   
   <b> Result: </b>
   
@@ -105,10 +99,7 @@
           from cte;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  To find the difference between the longest and shortest delivery times we need to extract max and min values of duration from runners table and find the difference.
   
   <b> Result: </b>
   
@@ -124,13 +115,11 @@
           select order_id, runner_id, (distance/duration) as speed
           from runner_orders
           where cancellation is NULL
+          group by 2,1
           order by 2,1;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  We need to find the speed (distance/duration) as the units in the table for distance is kms and for duration is in mins. The speed I calculated above is in kms/min. As they mentioned the average speed for each runner_id for each order_id, a group by clause on two columns runner_id, order_id is done. To analyse trend order by runer_id and order_id is done.
   
   <b> Result: </b>
   
@@ -155,10 +144,7 @@
           order by 2 desc;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  To find the successful delivery percentage, we need to find the total number of successful orders and total number of orders for each runner_id from runner_orders by using group by clause. All this information is calculated using cte and later we use this information to calculate the actual succcess percentage i.e., (success * 100/tot) will give the required results.
   
   <b> Result: </b>
   
