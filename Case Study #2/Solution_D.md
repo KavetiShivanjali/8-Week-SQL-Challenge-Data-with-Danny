@@ -128,22 +128,26 @@
   
         
          with cte as
-          (
-            select c.pizza_id, r.*
-            from runner_orders r
-            join customer_orders c
-            on r.order_id = c.order_id
-          )
-          select order_id, min(runner_id) as runner_id,sum(case when cancellation is NULL and pizza_id = 1 then round((12 - 0.30*distance)::decimal,2)
-          when cancellation is NULL and pizza_id = 2 then round((10 - 0.30*distance)::decimal,2) 
-          end) as left_over
-          from cte
-          group by 1
-          order by 1;
+      (
+        select c.pizza_id, r.*
+        from runner_orders r
+        join customer_orders c
+        on r.order_id = c.order_id
+      )
+	  , cte2 as(
+      select order_id, min(runner_id) as runner_id,sum(case when cancellation is NULL and pizza_id = 1 then round((12 - 0.30*distance)::decimal,2)
+      when cancellation is NULL and pizza_id = 2 then round((10 - 0.30*distance)::decimal,2) 
+      end) as left_over
+      from cte
+      group by 1
+      order by 1)
+	  select sum(left_over) as net_revenue
+	  from cte2
   <b> Explanation: </b>
   
-  To get the Runners left over we need pizza_id, distance covered by each runner, so we need to gather all the information by using join operation on customer_orders and runner_orders. By using case statement to separate Meat Lovers pizza from Vegetarian pizza we can add its corresponding rates and remove the runners payment using the distance from runner_orders will give the left over revenue after the delivery.
+  To get the Runners left over we need pizza_id, distance covered by each runner, so we need to gather all the information by using join operation on customer_orders and runner_orders. By using case statement to separate Meat Lovers pizza from Vegetarian pizza we can add its corresponding rates and remove the runners payment using the distance from runner_orders will give the left over revenue after the runners cut.
   
   <b> Result: </b>
   
-  ![image](https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/acba5f7c-9616-4fd2-8a2a-9c95afe82b53)
+  ![image](https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/b0c4bb97-5aac-471c-8651-56d35172443a)
+
