@@ -80,15 +80,18 @@ order by 2
 --5. If a Meat Lovers pizza was $12 and Vegetarian $10 fixed prices with no cost for extras and 
 -- each runner is paid $0.30 per kilometre traveled - how much money does Pizza Runner have left over after these deliveries?
 with cte as
-(
-	select c.pizza_id, r.*
-	from runner_orders r
-	join customer_orders c
-	on r.order_id = c.order_id
-)
-select order_id, min(runner_id) as runner_id,sum(case when cancellation is NULL and pizza_id = 1 then round((12 - 0.30*distance)::decimal,2)
-when cancellation is NULL and pizza_id = 2 then round((10 - 0.30*distance)::decimal,2) 
-end) as left_over
-from cte
-group by 1
-order by 1;
+      (
+        select c.pizza_id, r.*
+        from runner_orders r
+        join customer_orders c
+        on r.order_id = c.order_id
+      )
+	  , cte2 as(
+      select order_id, min(runner_id) as runner_id,sum(case when cancellation is NULL and pizza_id = 1 then round((12 - 0.30*distance)::decimal,2)
+      when cancellation is NULL and pizza_id = 2 then round((10 - 0.30*distance)::decimal,2) 
+      end) as left_over
+      from cte
+      group by 1
+      order by 1)
+	  select sum(left_over) as net_revenue
+	  from cte2
