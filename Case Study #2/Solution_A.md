@@ -103,7 +103,7 @@
   <b> Explanation: </b>
   
   As we need to find the maximum number of pizzas delivered in a single order, we have to gather the information related to orders primarily. For each order_id we
-  need to get the total count of orders done in customer_orders table, a simple group by over order_id 
+  need to get the total count of orders done in customer_orders table, a simple group by over order_id will give the required results.
   
   <b> Result: </b>
   
@@ -123,12 +123,9 @@
           where cancellation is NULL
           group by 1
   <b> Explanation: </b>
-  
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
-  
+   
+   By change here, I think it is the exclusions and extras. As they are talking for each delivered pizza, we need to consider cancellation status by which we require to join customer_orders which contains customer details and runner_orders which contains cancellation information. After joining the tables we need to check the orders for each customer_id whether a change is included or not which can easily done by case statements. If a change is included we can count as 1 else 0 for changed_orders and vice-versa for unchanged orders. To get the total orders we enclose case statements in sum function and gorup by over customer_id will give the required results. 
+   
   <b> Result: </b>
   
   ![image](https://github.com/KavetiShivanjali/8-Week-SQL-Challenge-Data-with-Danny/assets/30626886/71df260f-7e7c-41e9-86fc-4923136114b3)
@@ -146,10 +143,8 @@
           where extras is not NULL and exclusions is not NULL;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  To get the extras and exclusions information we need customer_orders table, to get delivery status details we need runner_orders. So, a join of these tables will provide the entire information. To include only extras and exclusions we can add a where clause which eliminates other combinations of extras and exclusions.
+  By counting the order_id we get the exact answer needed.
   
   <b> Result: </b>
   
@@ -166,10 +161,7 @@
           order by 2 desc;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  To get the hourly information, we need to capture the order_time information from customer_orders and extract hours. After extracting hours, we can count the order_id for each hour by adding a group by clause over hour information. 
   
   <b> Result: </b>
   
@@ -186,10 +178,7 @@
           order by 2 desc;
   <b> Explanation: </b>
   
-  runner_orders table contains the assignment information for each order to its corresponding runner_id. It also contains cancellation attribute
-  whose value is NULL for successful orders.
-  By using the above mentioned columns(runner_id, cancellation) we can extract the count of orders for each runner where cancellation is null to get successful     orders.
-  To get the successful orders of the runners not present in runner_orders table we can left join with the runners table and can make the count to zero if it is     not present in runner_orders table.
+  To get the weekly information, we extract weekday from order_time and count the order_id for each weekday by adding a group by clause.
   
   <b> Result: </b>
   
