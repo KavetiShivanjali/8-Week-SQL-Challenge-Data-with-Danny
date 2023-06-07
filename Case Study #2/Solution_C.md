@@ -1,4 +1,4 @@
-# C. Ingredient Optimization Solutions & Explanations
+# C. 🥩🥔Ingredient Optimization Solutions & Explanations
 <b> 1. What are the standard ingredients for each pizza?</b>
   
   <b> Solution:</b>
