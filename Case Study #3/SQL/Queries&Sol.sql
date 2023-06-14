@@ -3,7 +3,6 @@ SET search_path = foodie_fi;
 -- A. Customer Journey
 -- Based off the 8 sample customers provided in the sample from the subscriptions table,(1,2,11,13,15,16,18,19) 
 -- write a brief description about each customer’s onboarding journey.
-
 -- Try to keep it as short as possible - you may also want to run some sort of join to make your explanations a bit easier!
 
 with cte as
@@ -18,17 +17,6 @@ else NULL end as days_in_plan, row_number() over(partition by customer_id order 
 from cte c
 join plans p
 on c.plan_id = p.plan_id
-
-
-
--- select distinct s.customer_id, first_value(p.plan_name) over(partition by customer_id order by start_date) as initial_plan, 
--- last_value(p.plan_name) over(partition by customer_id order by start_date range between unbounded preceding and unbounded following) as current_plan,
--- min(s.start_date) over(partition by customer_id) as subscription_start, (count(s.customer_id) over(partition by customer_id))-1 as number_of_switches
--- from subscriptions s
--- join plans p
--- on s.plan_id = p.plan_id
--- where s.customer_id in (1,2,11,13,15,16,18,19)
--- order by 1
 
 
 -- B. Data Analysis Questions
@@ -60,10 +48,7 @@ where DATE_PART('YEAR',start_date) > 2020;
 
 
 -- 4. What is the customer count and percentage of customers who have churned rounded to 1 decimal place?
--- select count(plan_id = 4) from subscriptions;
--- select count(customer_id)
--- from subscriptions
--- where plan_id = 4
+
 with cte as
 (
 	select count(distinct s.customer_id) as total_count, sum(case when p.plan_name = 'churn' then 1 else 0 end) as total_churn
@@ -158,7 +143,6 @@ with cte as
 	on s.customer_id = c.customer_id
 	group by s.customer_id
 )
--- select * from cte1
 , cte2 as (
 select (case when day_bucket = 1 then (day_bucket-1)*30 else ((day_bucket-1)*30)+1 end || ' - ' || (day_bucket)*30 || ' days') as days_bucket, count(customer_id) as tot_customers
 from cte1
@@ -205,7 +189,6 @@ with recursive cte (customer_id,plan_id,start_date,next_date) as
 cte1 as
 (select *,row_number() over(partition by customer_id order by start_date) as payment_order , 
  lag(plan_id,1,plan_id) over(partition by customer_id order by start_date) as prev_plan
---  lag(Extract(Month from start_date),1,Extract(Month from start_date)) over(partition by ))
  from cte
 )
 select c.customer_id, p.plan_name, start_date::date as payment_date,
@@ -218,47 +201,6 @@ join plans p
 on c.plan_id = p.plan_id
 join plans x
 on c.prev_plan = x.plan_id
-where customer_id = 20
 order by 1,5
 ---------------------------------
 
-WITH series AS (
-                SELECT s.customer_id,
-                       s.plan_id,
-                       p.plan_name,
-                       CAST(GENERATE_SERIES(s.start_date,
-                                            CASE
-                                                WHEN s.plan_id IN (0, 3, 4) THEN s.start_date 
-                                                WHEN s.plan_id IN (1, 2)
-                                                     AND LEAD (s.plan_id) OVER (PARTITION BY s.customer_id ORDER BY s.start_date) <> s.plan_id
-                                                THEN LEAD(s.start_date) OVER (PARTITION BY s.customer_id ORDER BY s.start_date) - 1 
-                                                ELSE '2020-12-31'
-                                            END,
-                                            '1 MONTH'
-                                            ) AS DATE) AS payment_date,
-                       p.price
-                FROM   subscriptions AS s
-                JOIN   plans AS p
-                ON     s.plan_id = p.plan_id
-                WHERE  DATE_PART('YEAR', s.start_date) = 2020
-               )
-SELECT customer_id,
-       plan_id, 
-       plan_name,
-       payment_date,
-       CASE 
-           WHEN plan_id = 1
-           THEN price
-           WHEN plan_id IN (2, 3)
-                AND LAG (plan_id) OVER (PARTITION BY customer_id ORDER BY payment_date) <> plan_id
-                AND payment_date - LAG(payment_date) OVER (PARTITION BY customer_id ORDER BY payment_date) < 30
-           THEN price - LAG(price) OVER (PARTITION BY customer_id ORDER BY payment_date)
-           ELSE price
-       END AS amount,
-       RANK () OVER (PARTITION BY customer_id ORDER BY payment_date) AS payment_order 
-INTO   payments
-FROM   series
-WHERE  plan_id NOT IN (0, 4) and customer_id = 20
-
-SELECT * 
-FROM   payments 
