@@ -23,7 +23,8 @@ There are 2 Datasets available with respect to Food-Fi.
   Based off the 8 sample customers provided in the sample from the subscriptions table, write a brief description about each customer’s onboarding journey.
   Try to keep it as short as possible - you may also want to run some sort of join to make your explanations a bit easier
   sample from the subscriptions table
-  <img width="300" height="300" src = "https://user-images.githubusercontent.com/81607668/135704564-30250dd9-6381-490a-82cf-d15e6290cf3a.png"> 
+  
+  <img width="300" height="500" src = "https://user-images.githubusercontent.com/81607668/135704564-30250dd9-6381-490a-82cf-d15e6290cf3a.png"> 
   
     
  <h3> B. 📈📉Data Analysis Questions</h3>
@@ -44,10 +45,10 @@ There are 2 Datasets available with respect to Food-Fi.
  
    The Foodie-Fi team wants you to create a new payments table for the year 2020 that includes amounts paid by each customer in the subscriptions table with the following requirements:
 
-  (i). monthly payments always occur on the same day of month as the original start_date of any monthly paid plan
-  (ii). upgrades from basic to monthly or pro plans are reduced by the current paid amount in that month and start immediately
-  (iii). upgrades from pro monthly to pro annual are paid at the end of the current billing period and also starts at the end of the month period
-  (iv). once a customer churns they will no longer make payments
+   1. monthly payments always occur on the same day of month as the original start_date of any monthly paid plan
+   2. upgrades from basic to monthly or pro plans are reduced by the current paid amount in that month and start immediately
+   3. upgrades from pro monthly to pro annual are paid at the end of the current billing period and also starts at the end of the month period
+   4. once a customer churns they will no longer make payments
  
   
 # 📝Things learnt
