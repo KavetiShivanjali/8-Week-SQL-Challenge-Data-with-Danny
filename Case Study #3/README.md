@@ -59,6 +59,43 @@ There are 2 Datasets available with respect to Food-Fi.
 
 
 # 🤨Insights
+ 🥑 There are a total of **1000 customers** who subscribed for foodie fi.
+ 
+ 🥑 Every **customer** is **starting** their foodie fi journey with **trial plan**.
+ 
+ 🥑 **Most** of the **trial plan enrollments** is observed in the month of **March** and **July**.
+ 
+ 🥑 The **least** number of **trial plan enrollments** is observed in the month of **February** and **November**.
+ 
+ 🥑 **After the year 2020**, **most** of the customers have **churned** their plan.
+ 
+ 🥑 Only **few people** have subscribed for **basic monthly** after the year 2020.
+ 
+ 🥑 Nearly **30%** people have **churned** their subscription overall.
+ 
+ 🥑 Nearly **9%** of people have **churned right after their trial period**.
+ 
+ 🥑 Nearly **55%** of the people have opted for **Basic Monthly after their trial period**.
+ 
+ 🥑 **4%** of people have opted for **Pro Annualy plan after their trial period**.
+ 
+ 🥑 At the **end of the year 2020**,
+
+   * nearly **2%** of the people are in **trial period**,
+     
+   * **22%** in **basic monthly**,
+     
+   * **33%** in **pro monthly**,
+     
+   * **20%** in **pro annual** and
+     
+   * **24%** have **churned** their subscription.
+      
+ 🥑 In 2020, **19.5%** have **upgraded** to **annual plan**.
+ 
+ 🥑 A total of **105 days** has been observed for an existing **customer to switch to annual plan** on an **average**.
+ 
+ 🥑 **Zero** customers have **downgraded** from a pro monthly to a basic monthly plan in **2020**.
  
   
 
